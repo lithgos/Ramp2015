@@ -120,23 +120,3 @@ addressjob6 = Address.create(line1: "an aberdeen job address", city: "Aberdeen",
 job6.address = addressjob6
 company1.jobs << job6
 job6.qualifications << qualification1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

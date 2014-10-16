@@ -8,13 +8,19 @@ html, body {
   font-weight: 100;
   margin: 0 auto;
   background-color: #F7F7F7;
-  font-size: 18px
+  font-size: 18px;
+  background: url(babyfrontpage.jpg);
+  background-size: 100%;
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 #wrapper {
   margin: 0 auto;
+}
+
+.container {
+  background-color: rgba(256,256,256,0.9);
 }
 
 .header-divs {
@@ -66,7 +72,7 @@ p {
 }
 
 .railsform {
-  text-align: center
+  text-align: center;
 }
 
 .angular-google-map-container { 

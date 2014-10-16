@@ -1,0 +1,232 @@
+      <% if current_user %>
+        <% if current_user.type == "Contractor"  %>
+
+        <div class="row">
+
+          <div class="col-md-4 col-sm-12 col-xs-12" id="body-div1"><img src=""> 
+
+            <h4> WELCOME {{ contractor.name }} !</h4>
+
+            <hr/>
+
+            <div>
+            <button ng-click="available()" ng-show="contractor.available_now" class="availablebuttongreen">
+              Available now
+            </button>
+            <button ng-click="available()" ng-hide="contractor.available_now" class="availablebuttonred">
+              Not available
+            </button>
+            </div>
+
+            <hr/>
+
+            <div>
+              <h4>I will travel:</h4> 
+              <select ng-options="o.name for o in options" ng-model="selectedOption" ng-change="update()"></select>
+            </div>
+
+            <hr/>
+
+            <div>
+              <h4>My location:</h4>  
+                <google-map center="map.center" zoom="map.zoom">
+                
+                  <marker coords="marker.coords" idkey="0">
+                  </marker>
+              </google-map>
+              <!-- <h4>Radio &amp; Uncheckable Radio</h4>
+                <pre>{{radioModel || 'null'}}</pre>
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Home'">Home</label>
+                    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Current'">Current</label>
+                </div> -->
+            </div>       
+
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12" id="body-div2" ng-hide="contractor.available_now">
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12" id="body-div2" ng-show="contractor.available_now">
+            <h4>Mark jobs that you are interested in<br/>
+            to increase your position in employer searches</h4>
+
+            <hr/>  
+          
+            <div ng-repeat="job in jobs | orderBy: 'id' ">
+              <table>
+                <tr>
+               
+                  <td ng-show="userHasSearch(job)" ng-click="showjobinterest(job)">
+                    <i class="fa fa-check-circle" style="font-size:300%;color:green"  ></i>
+                  </td>
+              
+                  <td ng-hide="userHasSearch(job)" ng-click="showjobinterest(job)">
+                    <i class="fa fa-check-circle-o" style="font-size:300%"  ></i>
+                  </td>
+              
+                </tr>
+                <tr>
+                  <td>Role:  </td>
+                  <td>{{ job.description }} </td>
+                </tr>
+                <tr>
+                  <td>Location:  </td> 
+                  <td>{{ job.address.city }} </td>
+                <tr/> 
+                <tr>
+                  <td>Start date:  </td> 
+                  <td>{{ job.start_date }} </td>
+                <tr/> 
+                <tr>
+                  <td>End date:  </td> 
+                  <td>{{ job.end_date }} </td>
+                <tr/>
+                <tr>
+                  <td>Salary Range:  </td> 
+                  <td>{{ job.salary_range }} </td>
+                <tr/>
+
+              </table>
+            <hr/>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-8 col-xs-8" id="body-div3">
+          <%= image_tag "contractorpage.jpg", class: "contractorphoto" %>
+        </div>
+      </div>
+      <% end %>
+
+      <% if current_user.type == "Employee"  %>
+
+        <div class="row">
+
+          <div class="col-md-3 col-sm-12 col-xs-12" id="body-div1"><img src=""> 
+
+            <h4> WELCOME {{ employee.name }} !</h4>
+            <h4> Company: {{ employee.company.name }}
+
+            <hr/>
+
+            <div>
+              Select an existing job: 
+              <select ng-options="o.description for o in companyjobs" ng-model="selectedCompanyJob" ng-change="getPotentialContractors()"></select>
+              <a class="btn btn-default" href="/jobs/new">New job</a>
+            </div>
+
+            <hr/>
+
+            <div ng-show="selectedCompanyJob">
+              <h3>Details</h3>
+              <p>Description: {{ selectedCompanyJob.description }} </p>
+              <p>Location: {{ selectedCompanyJob.address.city }} </p>
+              <p>Start Date: {{ selectedCompanyJob.start_date }} </p>
+              <p>End Date: {{ selectedCompanyJob.end_date }} </p>
+              <p>Salary Range: {{ selectedCompanyJob.salary_range }} <p>
+              <p><a class="btn btn-default" href="/jobs/{{selectedCompanyJob.id}}/edit">Edit job</a>
+            </div>
+
+   
+
+            <hr/>
+
+            <div>
+           
+            </div>       
+
+          </div>
+        
+
+
+
+          <div class="col-md-9 col-sm-12 col-xs-12" id="body-div1"><img src="">
+
+              <table ng-show="selectedCompanyJob" class="table table-striped">
+
+                <tr>
+                  <td class="center"></td>
+                  <td class="center">Available</td>
+                  <td class="center">Distance</td>
+                  <td class="center">Qualification</td>
+                  <td class="center">Interest</td>
+                  <td class="center">Contacted</td>
+                  <td class="center">Offered</td>
+                  <td class="center">Accepted</td>
+                  <td class="center">Rejected</td>
+                  <td class="center">Phone</td>
+                  <td class="center">Email</td>
+
+                </tr> 
+
+                <tr ng-repeat="potentialcontractor in potentialcontractors">
+                  <td>{{ potentialcontractor.name }} <br/> ({{ potentialcontractor.address.city }}) </td>
+                  <td class="center" ng-show="potentialcontractor.available_now">
+                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                  </td>
+                  <td class="center" ng-hide="potentialcontractor.available_now">
+                    <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
+                  </td>
+                  <td class="center" ng-show="userCanTravel(potentialcontractor)">
+                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                  </td>
+                  <td class="center" ng-hide="userCanTravel(potentialcontractor)">
+                    <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
+                  </td>
+                  <td class="center" ng-show="userHasQualifications(potentialcontractor)">
+                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                  </td>
+                  <td class="center" ng-hide="userHasQualifications(potentialcontractor)">
+                    <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
+                  </td>      
+                  <td class="center" ng-show="userShowedinterest(potentialcontractor)">
+                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                  </td>
+                  <td class="center" ng-hide="userShowedinterest(potentialcontractor)">
+                    <i class="fa fa-question-circle" style="font-size:165%;color:orange"></i>
+                  </td>   
+                  <td class="center" ng-show="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
+                    <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+                  </td>
+                  <td class="center" ng-hide="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
+                    <i class="fa fa-square-o" style="font-size:165%"></i>
+                  </td>      
+                  <td class="center" ng-show="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
+                    <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+                  </td>
+                  <td class="center" ng-hide="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
+                    <i class="fa fa-square-o" style="font-size:165%"></i>
+                  </td>
+                  <td class="center" ng-show="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
+                    <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+                  </td>
+                  <td class="center" ng-hide="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
+                    <i class="fa fa-square-o" style="font-size:165%"></i>
+                  </td>
+                  <td class="center" ng-show="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
+                    <i class="fa fa-check-square-o" style="font-size:165%;color:red"></i>
+                  </td>
+                  <td class="center" ng-hide="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
+                    <i class="fa fa-square-o" style="font-size:165%"></i>
+                  </td>     
+                  <td class="center" ng-click="phoneUser(potentialcontractor)">
+                    <i class="fa fa-phone-square" style="font-size:165%"></i>
+                  </td>
+                  <td class="center" ng-click="emailUser(potentialcontractor)">
+                    <a href="mailto:{{potentialcontractor.email}}" target="_top"><i class="fa fa-envelope" style="font-size:165%;color:black"></i></a>
+                  </td>
+
+
+                </tr>
+              </table>
+            <div>
+        </div>
+      <% end %>
+      <% else %> 
+      <hr/>
+      <h1>Emergency Childcare recruitment <h1>
+      <hr/>  
+      <div><%= image_tag "babyfrontpage.jpg", class: "frontpagephoto" %></div>
+    <% end %>
+
+
+
+
+

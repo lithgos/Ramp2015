@@ -1,0 +1,88 @@
+<div class="railsform">
+
+<h2>Sign up a new <%= @resource_type%></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div>
+    <%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <% if @resource_type == Employee %>
+    <!-- Show Fields for Employee -->
+  <% elsif @resource_type == Contractor %>
+    <div>
+      <%= f.label :dob %><br />
+      <%= f.date_select :dob, :start_year => 1999, :end_year => 1920 %>
+    </div> 
+    <div>
+      <%= f.label :distance_travel %><br />
+      <%= f.select(:distance_travel, [["Unlimited", 50000], ["1000 miles", 1000], ["500 miles", 500], ["200 miles", 200], ["100 miles", 100], ["50 miles", 50], ["20 miles", 20]]) %>
+    </div> 
+    <div class="field">
+      <%= f.label :abroad %><br />
+      <%= f.check_box :abroad %>
+    </div>
+    <div class="field">
+      <%= f.label :available_now %><br />
+      <%= f.check_box :available_now %>
+    </div>
+    <%= f.fields_for :address, resource.address do |ff| %>
+      <%= ff.hidden_field :addressable_id %>
+      <%= ff.hidden_field :addressable_type %>
+      <div class="field">
+        <%= ff.label :line1 %><br />
+        <%= ff.text_field :line1 %>
+      </div>
+      <div class="field">
+        <%= ff.label :line2 %><br />
+        <%= ff.text_field :line2 %>
+      </div>
+      <div class="field">
+        <%= ff.label :city %><br />
+        <%= ff.text_field :city %>
+      </div>
+      <div class="field">
+        <%= ff.label :postcode %><br />
+        <%= ff.text_field :postcode %>
+      </div>
+      <div class="field">
+        <%= ff.label :country %><br />
+        <%= ff.text_field :country %>
+      </div>
+    <% end %>
+    <div class="field"> 
+      <% Qualification.all.each do |qualification| %>  
+        <%= check_box_tag "qualifications[]", qualification.id, resource.qualifications.include?(qualification) %>
+        <%= label qualification.id, qualification.name%>
+      <% end %>
+    </div>
+  <% end %>
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+</div>

@@ -1,0 +1,322 @@
+(function() {
+
+  var app = angular.module('recruitmentApp', ['ngAnimate', 'google-maps', 'ui.bootstrap']);
+
+  app.controller('contractorDashController', ["$scope", "$http", function($scope, $http) {
+
+    
+    // creates a generic map to be updated at later one
+    $scope.map = {
+        center: {
+            latitude: 45,
+            longitude: -73
+        },
+        zoom: 3
+    };
+
+    // creates a generic map marker to be updated at later one
+    $scope.marker = {
+        id:0,
+        coords: {
+            latitude: 51.5,
+            longitude: -0
+        }
+    }
+
+    // request to the server to return the current user type.  Either Employee or contractor
+    $http.get('/dashboard/get_current_user_type.json').success(function(data){
+
+      var current_user_type = data
+      
+    // if the current user is Contractor, load the initial information. 
+      if (current_user_type == "Contractor") {
+
+        $scope.contractor = [];
+        
+    // Centers the usermap on the User and puts a marker
+        $http.get('/dashboard/get_current_contractor.json').success(function(data){
+          $scope.contractor = data
+          $scope.map.center.latitude = $scope.contractor.address.latitude
+          $scope.map.center.longitude = $scope.contractor.address.longitude
+          $scope.map.zoom = 8
+          
+          $scope.marker = {
+              id:0,
+              coords: {
+                  latitude: $scope.contractor.address.latitude,
+                  longitude: $scope.contractor.address.longitude
+              }
+          }
+
+    // displays how far the user is prepared to travel.  needs refactoring
+          $scope.options = [{ name: "unlimited", id: 50000 }, { name: "1000 miles", id: 1000 }, { name: "500 miles", id: 500 }, { name: "200 miles", id: 200 }, { name: "100 miles", id: 100 }, { name: "50 miles", id: 50 }, { name: "20 miles", id: 20 }];      
+          for(var i = 0; i < $scope.options.length; i++) { 
+            if ($scope.options[i].id ==  $scope.contractor.distance_travel){
+              $scope.selectedOption = $scope.options[i]
+            } 
+          }
+        })
+
+    // get the jobs to display for the user.  currently returns all the jobs in seed data, but this can easily be refactored.  
+
+        $http.get('/jobs.json').success(function(data) {
+          $scope.jobs = data
+        })
+
+      }
+
+      // if the current user is Employee, load the initial information. 
+      if (current_user_type == "Employee") {
+
+        $scope.employee = []; 
+
+
+      // needs refactoring, this can be done in one request.    
+        $http.get('/dashboard/get_current_employee.json').success(function(data){
+          $scope.employee = data
+          $http.get('/dashboard/get_current_company_jobs.json').success(function(data){
+            $scope.companyjobs = data
+          })
+
+        })     
+      }
+    })
+
+
+  // returns the list of potential contrators 
+
+    $scope.getPotentialContractors = function (){
+      $http.get('/dashboard/get_potential_contractors.json?id='+$scope.selectedCompanyJob.id ).success(function(data){
+          $scope.potentialcontractors = data
+      })
+    }
+
+    $scope.userHasSearch = function(job) {
+      var interested = false
+      for(var i =0 ; i < job.jobsearches.length; i++) {
+        if (job.jobsearches[i].contractor_id == $scope.contractor.id) {
+          if ((job.jobsearches[i].interested == false) || (job.jobsearches[i].interested == null) || (job.jobsearches[i].interested == [])) {
+            interested = false
+          }else{
+            interested = true
+          }
+        }
+      }
+      return interested
+    }
+
+
+
+// changes the availability of a contractor
+
+    $scope.available = function() {
+
+      $http.put('dashboard/update_available_now.json', { id: $scope.contractor.id }).success(function (data){
+        if ($scope.contractor.available_now) {
+           $scope.contractor.available_now = false
+        } else {
+           $scope.contractor.available_now = true
+          }
+      }) 
+    }
+
+// updates how far a contractor is willing to travel in the database    
+    $scope.update = function() {
+       
+        $http.put('dashboard/update_distance_travel.json', { id: $scope.contractor.id, distance_travel: $scope.selectedOption.name }).success(function (data){
+      })
+    }
+
+// check if a contractor is interested in a particular job
+    $scope.showjobinterest = function(job) {
+
+      $http.put('dashboard/show_job_interest.json', { contractor_id: $scope.contractor.id, job_id: job.id }).success(function (data){
+        $http.get('/jobs.json').success(function(data) {
+          $scope.jobs = data
+        })
+      })
+    }
+
+// updates if a user is interested in a particular job
+    $scope.userShowedinterest = function(potentialcontractor) {
+      var interested = false
+      for(var i =0 ; i < potentialcontractor.jobsearches.length; i++) { 
+        if (potentialcontractor.jobsearches[i].job_id == $scope.selectedCompanyJob.id) {
+          if ((potentialcontractor.jobsearches[i].interested == false) || (potentialcontractor.jobsearches[i].interested == null) || (potentialcontractor.jobsearches[i].interested == [])) {
+            interested = false
+          }else{
+            interested = true
+          }
+        }
+      }
+      return interested
+    }
+
+// Checks the distance between a contractor and a job, and checks whether the contractor is willing to travel the distance to it.  
+    $scope.userCanTravel = function(potentialcontractor) {
+      var cantravel = false
+      lat1 = potentialcontractor.address.latitude
+      lon1 = potentialcontractor.address.longitude
+      lat2 = $scope.selectedCompanyJob.address.latitude
+      lon2 = $scope.selectedCompanyJob.address.longitude
+      maxdistance = potentialcontractor.distance_travel
+
+
+      var R = 6371; // km
+      var φ1 = lat1 * Math.PI / 180;
+      var φ2 = lat2 * Math.PI / 180;
+      var Δφ = (lat2-lat1)* Math.PI / 180;
+      var Δλ = (lon2-lon1)* Math.PI / 180;
+
+      var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+              Math.cos(φ1) * Math.cos(φ2) *
+              Math.sin(Δλ/2) * Math.sin(Δλ/2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+      var d = R * c;
+
+      if (d < maxdistance) {
+        return true
+      }else{
+        return false
+      }
+
+    }
+
+
+// Checks the distance between a contractor and a job, and checks whether the contractor is willing to travel the distance to it.  
+
+    $scope.userHasQualifications = function(potentialcontractor) {
+
+      var hasQualifications = false
+
+      contractorqualifications = potentialcontractor.qualifications
+      jobqualifications = $scope.selectedCompanyJob.qualifications
+
+
+      for(var i =0 ; i < contractorqualifications.length; i++) {
+        for(var ii =0 ; ii < jobqualifications.length; ii++) {
+
+          if (contractorqualifications[i].name == jobqualifications[ii].name) {
+            hasQualifications = true
+          }
+        }
+      }
+      return hasQualifications
+    }
+
+// in the employee dashboard, checks whether a user's status is available. 
+    $scope.userAvailable = function(potentialcontractor) {
+
+      p = potentialcontractor.available_now  
+      return p
+
+    }
+
+
+// for a particular job, checks whether a user has been contacted.  
+    $scope.userContacted = function(potentialcontractor) {
+      var contacted = false
+      for(var i =0 ; i < potentialcontractor.jobsearches.length; i++) { 
+        if (potentialcontractor.jobsearches[i].job_id == $scope.selectedCompanyJob.id) {
+          if (potentialcontractor.jobsearches[i].contacted == true){
+            return true
+          }
+        }
+      }
+      return false
+    }
+
+// toggles status of User contacted for a specific job.    
+    $scope.contactUser = function(potentialcontractor) {
+
+      $http.put('dashboard/contact_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+          $scope.getPotentialContractors()
+      })
+      
+    }
+
+// for a particular job, checks whether a user has been made an offer  
+    $scope.userOffered = function(potentialcontractor) {
+      var offered = false
+      for(var i =0 ; i < potentialcontractor.jobsearches.length; i++) { 
+        if (potentialcontractor.jobsearches[i].job_id == $scope.selectedCompanyJob.id) {
+          if (potentialcontractor.jobsearches[i].offered == true){
+            return true
+          }
+        }
+      }
+      return false
+    }
+
+// toggles status of User offered for a specific job.    
+    $scope.offerUser = function(potentialcontractor) {
+
+      $http.put('dashboard/offer_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+          $scope.getPotentialContractors()
+      })      
+    }
+
+// for a particular job, checks whether a user has accepted an offer
+    $scope.userAccepted = function(potentialcontractor) {
+      for(var i =0 ; i < potentialcontractor.jobsearches.length; i++) { 
+        if (potentialcontractor.jobsearches[i].job_id == $scope.selectedCompanyJob.id) {
+          if (potentialcontractor.jobsearches[i].accepted == true){
+            return true
+          }
+        }
+      }
+      return false
+    }
+
+// toggles status of User accepted for a specific job.  
+    $scope.acceptUser = function(potentialcontractor) {
+
+      $http.put('dashboard/accept_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+          $scope.getPotentialContractors()
+      }) 
+    }
+
+// for a particular job, checks whether a user has rejected an offer
+    $scope.userRejected = function(potentialcontractor) {
+      for(var i =0 ; i < potentialcontractor.jobsearches.length; i++) { 
+        if (potentialcontractor.jobsearches[i].job_id == $scope.selectedCompanyJob.id) {
+          if (potentialcontractor.jobsearches[i].rejected == true){
+            return true
+          }
+        }
+      }
+      return false
+    }
+
+// toggles status of User accepted for a specific job.
+    $scope.rejectUser = function(potentialcontractor) {
+
+      $http.put('dashboard/reject_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+          $scope.getPotentialContractors()
+      }) 
+    }
+
+//  Popup message with the contractors phone number.  
+    $scope.phoneUser = function(potentialcontractor) {
+
+      alert("Name: " + potentialcontractor.name + "\nPhone number: " + potentialcontractor.phone)
+      
+    }
+
+//  start of code to change location of user to current location... to be continued... 
+
+    // $scope.setCurrentLocation = function() {
+    //   contractor = $scope.contractor
+      
+    //   $http.put('dashboard/set_current_location.json', { contractor_id: contractor.id }).success(function (currentuser){
+         
+    //      $scope.contractor.address.latitude = currentuser.address.latitude
+    //      $scope.contractor.address.longitude = currentuser.address.longitude
+    //    })
+    // }
+
+
+  }])
+
+})();

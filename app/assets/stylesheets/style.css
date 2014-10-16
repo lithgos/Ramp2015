@@ -1,0 +1,147 @@
+*{
+  box-sizing: border-box;
+}
+
+html, body { 
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  margin: 0 auto;
+  background-color: #F7F7F7;
+  font-size: 18px
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+#wrapper {
+  margin: 0 auto;
+}
+
+.header-divs {
+/*  padding: 40px 35px 35px;*/
+  vertical-align: top;
+  text-align: center; 
+  background: #848484;
+  color: white;
+  font-weight: 100;
+  font-size: 25px;
+  display: inline-block;
+  height: 15vh;
+  border: solid #F7F7F7 5px;
+}
+
+.header-divs a {
+  display: block;
+  color: white;
+  padding: 25px;
+  width: 100%;
+}
+
+#header-div1, #header-div2, #header-div3 {
+  cursor: pointer;
+}
+
+
+#header-div1:hover, #header-div2:hover, #header-div3:hover {
+  opacity: 0.5;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  background: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.railsform {
+  text-align: center
+}
+
+.angular-google-map-container { 
+  height: 250px; 
+  width: 250px;
+}
+
+.contractorphoto {
+  width: 100%;
+  margin-top: 40px;
+
+}
+
+#body-div2 {
+  margin-top: 30px;
+}
+
+.availablebuttongreen {
+  background-color: green;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.availablebuttonred {
+  background-color: red;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.frontpagephoto {
+  width: 70%;
+}
+
+.frontpagephoto {
+
+    display:block;
+    
+    animation: fadein 3s;
+    -moz-animation: fadein 3s; /* Firefox */
+    -webkit-animation: fadein 3s; /* Safari and Chrome */
+    -o-animation: fadein 3s; /* Opera */
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+

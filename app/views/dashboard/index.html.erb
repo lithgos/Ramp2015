@@ -99,20 +99,21 @@
 
         <div class="row">
 
-          <div class="col-md-3 col-sm-12 col-xs-12" id="body-div1"><img src=""> 
+          <div class="col-md-4 col-sm-12 col-xs-12" id="body-div1"><img src=""> 
 
             <h4> WELCOME {{ employee.name }} !</h4>
             <h4> Company: {{ employee.company.name }}
 
-            <hr/>
+          </div>
 
-            <div>
-              Select an existing job: 
+          <div class="col-md-4 col-sm-12 col-xs-12" id="body-div1"><img src="">
+
+              <h4> Select an existing job: </h4>
               <select ng-options="o.description for o in companyjobs" ng-model="selectedCompanyJob" ng-change="getPotentialContractors()"></select>
               <a class="btn btn-default" href="/jobs/new">New job</a>
-            </div>
+          </div>
 
-            <hr/>
+          <div class="col-md-4 col-sm-12 col-xs-12" id="body-div1"><img src="">
 
             <div ng-show="selectedCompanyJob">
               <h3>Details</h3>
@@ -124,99 +125,93 @@
               <p><a class="btn btn-default" href="/jobs/{{selectedCompanyJob.id}}/edit">Edit job</a>
             </div>
 
-   
-
-            <hr/>
-
-            <div>
-           
-            </div>       
-
           </div>
-        
+        </div>
+
+        <hr/>
+
+        <div class="row">      
+
+          <div class="col-md-12 col-sm-12 col-xs-12" id="body-div1"><img src="">
+
+            <table ng-show="selectedCompanyJob" class="table table-striped">
+
+            <tr>
+                <td class="center"></td>
+                <td class="center">Available</td>
+                <td class="center">Distance</td>
+                <td class="center">Qualification</td>
+                <td class="center">Interest</td>
+                <td class="center">Contacted</td>
+                <td class="center">Offered</td>
+                <td class="center">Accepted</td>
+                <td class="center">Rejected</td>
+                <td class="center">Phone</td>
+                <td class="center">Email</td>
+
+              </tr> 
+
+              <tr ng-repeat="potentialcontractor in potentialcontractors">
+                <td>{{ potentialcontractor.name }} <br/> ({{ potentialcontractor.address.city }}) </td>
+                <td class="center" ng-show="potentialcontractor.available_now">
+                  <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                </td>
+                <td class="center" ng-hide="potentialcontractor.available_now">
+                  <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
+                </td>
+                <td class="center" ng-show="userCanTravel(potentialcontractor)">
+                  <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                </td>
+                <td class="center" ng-hide="userCanTravel(potentialcontractor)">
+                  <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
+                </td>
+                <td class="center" ng-show="userHasQualifications(potentialcontractor)">
+                  <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                </td>
+                <td class="center" ng-hide="userHasQualifications(potentialcontractor)">
+                  <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
+                </td>      
+                <td class="center" ng-show="userShowedinterest(potentialcontractor)">
+                  <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
+                </td>
+                <td class="center" ng-hide="userShowedinterest(potentialcontractor)">
+                  <i class="fa fa-question-circle" style="font-size:165%;color:orange"></i>
+                </td>   
+                <td class="center" ng-show="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
+                  <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+                </td>
+                <td class="center" ng-hide="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
+                  <i class="fa fa-square-o" style="font-size:165%"></i>
+                </td>      
+                <td class="center" ng-show="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
+                  <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+                </td>
+                <td class="center" ng-hide="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
+                  <i class="fa fa-square-o" style="font-size:165%"></i>
+                </td>
+                <td class="center" ng-show="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
+                  <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+                </td>
+                <td class="center" ng-hide="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
+                  <i class="fa fa-square-o" style="font-size:165%"></i>
+                </td>
+                <td class="center" ng-show="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
+                  <i class="fa fa-check-square-o" style="font-size:165%;color:red"></i>
+                </td>
+                <td class="center" ng-hide="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
+                  <i class="fa fa-square-o" style="font-size:165%"></i>
+                </td>     
+                <td class="center" ng-click="phoneUser(potentialcontractor)">
+                  <i class="fa fa-phone-square" style="font-size:165%"></i>
+                </td>
+                <td class="center" ng-click="emailUser(potentialcontractor)">
+                  <a href="mailto:{{potentialcontractor.email}}" target="_top"><i class="fa fa-envelope" style="font-size:165%;color:black"></i></a>
+                </td>
 
 
-
-          <div class="col-md-9 col-sm-12 col-xs-12" id="body-div1"><img src="">
-
-              <table ng-show="selectedCompanyJob" class="table table-striped">
-
-                <tr>
-                  <td class="center"></td>
-                  <td class="center">Available</td>
-                  <td class="center">Distance</td>
-                  <td class="center">Qualification</td>
-                  <td class="center">Interest</td>
-                  <td class="center">Contacted</td>
-                  <td class="center">Offered</td>
-                  <td class="center">Accepted</td>
-                  <td class="center">Rejected</td>
-                  <td class="center">Phone</td>
-                  <td class="center">Email</td>
-
-                </tr> 
-
-                <tr ng-repeat="potentialcontractor in potentialcontractors">
-                  <td>{{ potentialcontractor.name }} <br/> ({{ potentialcontractor.address.city }}) </td>
-                  <td class="center" ng-show="potentialcontractor.available_now">
-                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
-                  </td>
-                  <td class="center" ng-hide="potentialcontractor.available_now">
-                    <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
-                  </td>
-                  <td class="center" ng-show="userCanTravel(potentialcontractor)">
-                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
-                  </td>
-                  <td class="center" ng-hide="userCanTravel(potentialcontractor)">
-                    <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
-                  </td>
-                  <td class="center" ng-show="userHasQualifications(potentialcontractor)">
-                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
-                  </td>
-                  <td class="center" ng-hide="userHasQualifications(potentialcontractor)">
-                    <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
-                  </td>      
-                  <td class="center" ng-show="userShowedinterest(potentialcontractor)">
-                    <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
-                  </td>
-                  <td class="center" ng-hide="userShowedinterest(potentialcontractor)">
-                    <i class="fa fa-question-circle" style="font-size:165%;color:orange"></i>
-                  </td>   
-                  <td class="center" ng-show="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
-                    <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
-                  </td>
-                  <td class="center" ng-hide="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
-                    <i class="fa fa-square-o" style="font-size:165%"></i>
-                  </td>      
-                  <td class="center" ng-show="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
-                    <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
-                  </td>
-                  <td class="center" ng-hide="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
-                    <i class="fa fa-square-o" style="font-size:165%"></i>
-                  </td>
-                  <td class="center" ng-show="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
-                    <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
-                  </td>
-                  <td class="center" ng-hide="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
-                    <i class="fa fa-square-o" style="font-size:165%"></i>
-                  </td>
-                  <td class="center" ng-show="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
-                    <i class="fa fa-check-square-o" style="font-size:165%;color:red"></i>
-                  </td>
-                  <td class="center" ng-hide="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
-                    <i class="fa fa-square-o" style="font-size:165%"></i>
-                  </td>     
-                  <td class="center" ng-click="phoneUser(potentialcontractor)">
-                    <i class="fa fa-phone-square" style="font-size:165%"></i>
-                  </td>
-                  <td class="center" ng-click="emailUser(potentialcontractor)">
-                    <a href="mailto:{{potentialcontractor.email}}" target="_top"><i class="fa fa-envelope" style="font-size:165%;color:black"></i></a>
-                  </td>
-
-
-                </tr>
-              </table>
-            <div>
+              </tr>
+            </table>
+          </div>
         </div>
       <% end %>
       <% else %> 

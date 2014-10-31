@@ -4,5 +4,6 @@ class Company < ActiveRecord::Base
   has_one :address, as: :addressable, dependent: :destroy
   has_many :jobs
   has_many :employees
+  has_many :relationships
 
 end

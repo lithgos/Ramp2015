@@ -5,5 +5,6 @@ class Contractor < User
   has_many :jobsearches
   has_and_belongs_to_many :qualifications
   # accepts_nested_attributes_for :qualifications
+  has_many :relationships
 
 end

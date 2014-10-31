@@ -318,3 +318,20 @@
 [10/17/14 12:08:49 +0100 tobys-mbp.office.whitebearyard.com (63415)] INFO : Doing deferred dependency-detection before Rack startup
 [10/17/14 12:08:51 +0100 tobys-mbp.office.whitebearyard.com (63415)] INFO : Reporting to: https://rpm.newrelic.com/accounts/772193/applications/4278020
 [10/17/14 12:10:27 +0100 tobys-mbp.office.whitebearyard.com (63415)] INFO : Starting Agent shutdown
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Starting the New Relic agent in "development" environment.
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : New Relic Agent Developer Mode enabled.
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Environment: development
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : No known dispatcher detected.
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Application: My Application (Development)
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing ActiveRecord instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing Net instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing deferred Rack instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing Rack::Builder middleware instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing Rails 3+ middleware instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing Rails 3 Controller instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Installing Rails 3 Error instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Finished instrumentation
+[10/31/14 19:02:16 +0000 Tobys-MacBook-Pro.local (41977)] INFO : Starting Agent shutdown

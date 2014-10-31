@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Favouritecontractor:</b>
+  <%= @relationship.favouritecontractor %>
+</p>
+
+<p>
+  <b>Companyblockcontractor:</b>
+  <%= @relationship.companyblockcontractor %>
+</p>
+
+
+<%= link_to 'Edit', edit_relationship_path(@relationship) %> |
+<%= link_to 'Back', relationships_path %>

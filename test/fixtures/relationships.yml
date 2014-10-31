@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  favouritecontractor: false
+  companyblockcontractor: false
+
+two:
+  favouritecontractor: false
+  companyblockcontractor: false

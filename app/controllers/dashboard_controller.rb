@@ -44,17 +44,17 @@ class DashboardController < ApplicationController
     end
   end
 
-  def get_potential_contractors
+  def put_potential_contractors
 
     potentialcontractors = Contractor.where(available_now: true)
-
     potentialcontractors.each do |contractor|
       jobsearch = Jobsearch.where(contractor_id: contractor.id, job_id: params[:job_id]).first_or_create
+      relationship = Relationship.where(contractor_id: contractor.id, company_id: params[:company_id]).first_or_create
     end
       
     respond_to do |format|
-      format.html { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :qualifications]) }
-      format.json { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :qualifications]) }
+      format.html { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :relationships, :qualifications]) }
+      format.json { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :relationships, :qualifications]) }
     end
   end
 
@@ -145,6 +145,20 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html { render json: jobsearch }
       format.json { render json: jobsearch }
+    end
+  end
+
+  def put_toggle_contractor_favourite
+
+    relationship = Relationship.where(contractor_id: params[:contractor_id], company_id: params[:company_id]).first_or_create
+
+
+    relationship.favouritecontractor ? (relationship.favouritecontractor = false) : (relationship.favouritecontractor = true)
+    relationship.save
+
+    respond_to do |format|
+      format.html { render json: relationship }
+      format.json { render json: relationship }
     end
   end
 

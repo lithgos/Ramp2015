@@ -86,10 +86,11 @@
   // returns the list of potential contrators 
 
     $scope.getPotentialContractors = function (){
-      $http.get('/dashboard/get_potential_contractors.json?id='+$scope.selectedCompanyJob.id ).success(function(data){
+      $http.put('/dashboard/put_potential_contractors.json', {job_id: $scope.selectedCompanyJob.id, company_id: $scope.employee.company.id}).success(function(data){
           $scope.potentialcontractors = data
       })
     }
+
 
     $scope.userHasSearch = function(job) {
       var interested = false
@@ -251,7 +252,7 @@
 
 // toggles status of User offered for a specific job.    
     $scope.offerUser = function(potentialcontractor) {
-
+      alert("test")
       $http.put('dashboard/offer_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
           $scope.getPotentialContractors()
       })      
@@ -303,6 +304,40 @@
       alert("Name: " + potentialcontractor.name + "\nPhone number: " + potentialcontractor.phone)
       
     }
+
+    $scope.contractorfavourite = function(potentialcontractor) {
+      var favouritecontractor = false
+      for(var i = 0 ; i < potentialcontractor.relationships.length; i++) {
+        if (potentialcontractor.relationships[i].company_id == $scope.employee.company.id) {
+          if ((potentialcontractor.relationships[i].favouritecontractor == false) || (potentialcontractor.relationships[i].favouritecontractor == null) || (potentialcontractor.relationships[i].favouritecontractor == [])) {
+            favouritecontractor = false
+          }else{
+            favouritecontractor = true
+          }
+        }
+      }
+      return favouritecontractor
+    }
+
+    $scope.togglecontractorfavourite = function(potentialcontractor) {
+
+      $http.put('dashboard/put_toggle_contractor_favourite.json', { contractor_id: potentialcontractor.id, company_id: $scope.employee.company.id}).success(function (data){
+          $scope.getPotentialContractors()
+      }) 
+    }
+
+
+    // $scope.togglecontractorfavourite = function(potentialcontractor) {
+    //   for(var i = 0 ; i < potentialcontractor.relationships.length; i++) {
+    //     if (potentialcontractor.relationships[i].company_id == $scope.employee.company.id) {
+    //       if ((potentialcontractor.relationships[i].favouritecontractor == false) || (potentialcontractor.relationships[i].favouritecontractor == null) || (potentialcontractor.relationships[i].favouritecontractor == [])) {
+    //         potentialcontractor.relationships[i].favouritecontractor = true
+    //       }else{
+    //         potentialcontractor.relationships[i].favouritecontractor = false
+    //       }
+    //     }
+    //   }
+    // }
 
 //  start of code to change location of user to current location... to be continued... 
 

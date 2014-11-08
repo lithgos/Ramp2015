@@ -252,7 +252,6 @@
 
 // toggles status of User offered for a specific job.    
     $scope.offerUser = function(potentialcontractor) {
-      alert("test")
       $http.put('dashboard/offer_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
           $scope.getPotentialContractors()
       })      

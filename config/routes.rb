@@ -47,6 +47,7 @@ RecruitmentProject3App::Application.routes.draw do
   put 'dashboard/reject_user', to: "dashboard#reject_user"      
   put 'dashboard/set_current_location', to: "dashboard#set_current_location"
   put 'dashboard/put_toggle_contractor_favourite.json', to: "dashboard#put_toggle_contractor_favourite"
+  put 'dashboard/put_toggle_company_block_contractor.json', to: "dashboard#put_toggle_company_block_contractor"
 
 
   # The priority is based upon order of creation:

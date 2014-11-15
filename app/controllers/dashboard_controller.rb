@@ -162,6 +162,34 @@ class DashboardController < ApplicationController
     end
   end
 
+  def put_toggle_contractor_block
+
+    relationship = Relationship.where(contractor_id: params[:contractor_id], company_id: params[:company_id]).first_or_create
+
+
+    relationship.companyblockcontractor ? (relationship.companyblockcontractor = false) : (relationship.companyblockcontractor = true)
+    relationship.save
+
+    respond_to do |format|
+      format.html { render json: relationship }
+      format.json { render json: relationship }
+    end
+  end
+
+  def put_toggle_company_block_contractor
+
+    relationship = Relationship.where(contractor_id: params[:contractor_id], company_id: params[:company_id]).first_or_create
+
+
+    relationship.companyblockcontractor ? (relationship.companyblockcontractor = false) : (relationship.companyblockcontractor = true)
+    relationship.save
+
+    respond_to do |format|
+      format.html { render json: relationship }
+      format.json { render json: relationship }
+    end
+  end
+
 # start of code to update to the current location of the user...  
 
   # def set_current_location

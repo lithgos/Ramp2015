@@ -325,6 +325,27 @@
       }) 
     }
 
+    $scope.companyblockcontractor = function(potentialcontractor) {
+      var companyblockcontractor = false
+      for(var i = 0 ; i < potentialcontractor.relationships.length; i++) {
+        if (potentialcontractor.relationships[i].company_id == $scope.employee.company.id) {
+          if ((potentialcontractor.relationships[i].companyblockcontractor == false) || (potentialcontractor.relationships[i].companyblockcontractor == null) || (potentialcontractor.relationships[i].companyblockcontractor == [])) {
+            companyblockcontractor = false
+          }else{
+            companyblockcontractor = true
+          }
+        }
+      }
+      return companyblockcontractor
+    }
+
+    $scope.togglecompanyblockcontractor = function(potentialcontractor) {
+      
+      $http.put('dashboard/put_toggle_company_block_contractor.json', { contractor_id: potentialcontractor.id, company_id: $scope.employee.company.id}).success(function (data){
+          $scope.getPotentialContractors()
+      }) 
+    }
+
 
     // $scope.togglecontractorfavourite = function(potentialcontractor) {
     //   for(var i = 0 ; i < potentialcontractor.relationships.length; i++) {

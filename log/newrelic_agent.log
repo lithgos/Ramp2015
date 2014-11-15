@@ -653,3 +653,131 @@
 [11/15/14 11:21:57 +0000 Tobys-MacBook-Pro.local (6702)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
 [11/15/14 11:22:03 +0000 Tobys-MacBook-Pro.local (6702)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
 [11/15/14 11:57:36 +0000 Tobys-MacBook-Pro.local (6702)] INFO : Starting Agent shutdown
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Starting the New Relic agent in "development" environment.
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : New Relic Agent Developer Mode enabled.
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Environment: development
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Dispatcher: webrick
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Application: My Application (Development)
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing ActiveRecord instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing Net instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing deferred Rack instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing Rack::Builder middleware instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing Rails 3+ middleware instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing Rails 3 Controller instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Installing Rails 3 Error instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Finished instrumentation
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] ERROR : OpenSSL::SSL::SSLError: hostname "collector.newrelic.com" does not match the server certificate
+[11/15/14 13:08:55 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Will re-attempt in 60 seconds
+[11/15/14 13:08:56 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Doing deferred dependency-detection before Rack startup
+[11/15/14 13:09:56 +0000 Tobys-MacBook-Pro.local (7622)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[11/15/14 13:09:56 +0000 Tobys-MacBook-Pro.local (7622)] ERROR : OpenSSL::SSL::SSLError: hostname "collector.newrelic.com" does not match the server certificate
+[11/15/14 13:09:56 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Will re-attempt in 120 seconds
+[11/15/14 13:10:37 +0000 Tobys-MacBook-Pro.local (7622)] INFO : Starting Agent shutdown
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Starting the New Relic agent in "development" environment.
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : New Relic Agent Developer Mode enabled.
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Environment: development
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Dispatcher: webrick
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Application: My Application (Development)
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing ActiveRecord instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing Net instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing deferred Rack instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing Rack::Builder middleware instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing Rails 3+ middleware instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing Rails 3 Controller instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Installing Rails 3 Error instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Finished instrumentation
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] ERROR : OpenSSL::SSL::SSLError: hostname "collector.newrelic.com" does not match the server certificate
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Will re-attempt in 60 seconds
+[11/15/14 13:11:05 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Doing deferred dependency-detection before Rack startup
+[11/15/14 13:11:20 +0000 Tobys-MacBook-Pro.local (7697)] INFO : Starting Agent shutdown
+[11/15/14 13:11:26 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Starting the New Relic agent in "development" environment.
+[11/15/14 13:11:26 +0000 Tobys-MacBook-Pro.local (7730)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/15/14 13:11:26 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/15/14 13:11:26 +0000 Tobys-MacBook-Pro.local (7730)] INFO : New Relic Agent Developer Mode enabled.
+[11/15/14 13:11:26 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Environment: development
+[11/15/14 13:11:26 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Dispatcher: webrick
+[11/15/14 13:11:26 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Application: My Application (Development)
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing ActiveRecord instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing Net instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing deferred Rack instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing Rack::Builder middleware instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing Rails 3+ middleware instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing Rails 3 Controller instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Installing Rails 3 Error instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Finished instrumentation
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] ERROR : OpenSSL::SSL::SSLError: hostname "collector.newrelic.com" does not match the server certificate
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Will re-attempt in 60 seconds
+[11/15/14 13:11:27 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Doing deferred dependency-detection before Rack startup
+[11/15/14 13:12:13 +0000 Tobys-MacBook-Pro.local (7730)] INFO : Starting Agent shutdown
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Starting the New Relic agent in "development" environment.
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : New Relic Agent Developer Mode enabled.
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Environment: development
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Dispatcher: webrick
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Application: My Application (Development)
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing ActiveRecord instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing Net instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing deferred Rack instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing Rack::Builder middleware instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing Rails 3+ middleware instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing Rails 3 Controller instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Installing Rails 3 Error instrumentation
+[11/15/14 13:13:30 +0000 Tobys-MacBook-Pro.local (531)] INFO : Finished instrumentation
+[11/15/14 13:13:31 +0000 Tobys-MacBook-Pro.local (531)] INFO : Doing deferred dependency-detection before Rack startup
+[11/15/14 13:14:46 +0000 Tobys-MacBook-Pro.local (531)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[11/15/14 13:14:46 +0000 Tobys-MacBook-Pro.local (531)] ERROR : NewRelic::Agent::ServerConnectionException: Recoverable error connecting to collector.newrelic.com:443: Operation timed out - connect(2) for "collector.newrelic.com" port 443
+[11/15/14 13:14:46 +0000 Tobys-MacBook-Pro.local (531)] INFO : Will re-attempt in 60 seconds
+[11/15/14 13:15:48 +0000 Tobys-MacBook-Pro.local (531)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[11/15/14 13:15:48 +0000 Tobys-MacBook-Pro.local (531)] ERROR : OpenSSL::SSL::SSLError: hostname "collector.newrelic.com" does not match the server certificate
+[11/15/14 13:15:48 +0000 Tobys-MacBook-Pro.local (531)] INFO : Will re-attempt in 120 seconds
+[11/15/14 13:16:45 +0000 Tobys-MacBook-Pro.local (531)] INFO : Starting Agent shutdown
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Starting the New Relic agent in "development" environment.
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : New Relic Agent Developer Mode enabled.
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Environment: development
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Dispatcher: webrick
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Application: My Application (Development)
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing ActiveRecord instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing Net instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing deferred Rack instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing Rack::Builder middleware instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing Rails 3+ middleware instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing Rails 3 Controller instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Installing Rails 3 Error instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Finished instrumentation
+[11/15/14 13:16:48 +0000 Tobys-MacBook-Pro.local (623)] INFO : Doing deferred dependency-detection before Rack startup
+[11/15/14 13:16:52 +0000 Tobys-MacBook-Pro.local (623)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
+[11/15/14 13:43:15 +0000 Tobys-MacBook-Pro.local (623)] INFO : Starting Agent shutdown
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Starting the New Relic agent in "development" environment.
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : New Relic Agent Developer Mode enabled.
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Environment: development
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Dispatcher: webrick
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Application: My Application (Development)
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing ActiveRecord instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing Net instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing deferred Rack instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing Rack::Builder middleware instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing Rails 3+ middleware instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing Rails 3 Controller instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Installing Rails 3 Error instrumentation
+[11/15/14 13:53:44 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Finished instrumentation
+[11/15/14 13:53:45 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Doing deferred dependency-detection before Rack startup
+[11/15/14 13:53:46 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
+[11/15/14 13:54:40 +0000 Tobys-MacBook-Pro.local (1082)] INFO : Starting Agent shutdown

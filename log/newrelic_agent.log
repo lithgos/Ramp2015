@@ -819,3 +819,78 @@
 [11/15/14 14:25:36 +0000 Tobys-MacBook-Pro.local (2043)] INFO : Doing deferred dependency-detection before Rack startup
 [11/15/14 14:25:37 +0000 Tobys-MacBook-Pro.local (2043)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
 [11/15/14 14:34:56 +0000 Tobys-MacBook-Pro.local (2043)] INFO : Starting Agent shutdown
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Starting the New Relic agent in "development" environment.
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : New Relic Agent Developer Mode enabled.
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Environment: development
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Dispatcher: webrick
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Application: My Application (Development)
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing ActiveRecord instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing Net instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing deferred Rack instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing Rack::Builder middleware instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing Rails 3+ middleware instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing Rails 3 Controller instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Installing Rails 3 Error instrumentation
+[11/16/14 09:34:52 +0000 tobys-mbp.home (7088)] INFO : Finished instrumentation
+[11/16/14 09:34:53 +0000 tobys-mbp.home (7088)] INFO : Doing deferred dependency-detection before Rack startup
+[11/16/14 09:34:54 +0000 tobys-mbp.home (7088)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
+[11/16/14 15:56:52 +0000 tobys-mbp.home (7088)] INFO : Starting Agent shutdown
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Starting the New Relic agent in "development" environment.
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : New Relic Agent Developer Mode enabled.
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Environment: development
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Dispatcher: webrick
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Application: My Application (Development)
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing ActiveRecord instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing Net instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing deferred Rack instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing Rack::Builder middleware instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing Rails 3+ middleware instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing Rails 3 Controller instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Installing Rails 3 Error instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Finished instrumentation
+[11/22/14 08:02:52 +0000 tobys-mbp.home (13358)] INFO : Doing deferred dependency-detection before Rack startup
+[11/22/14 08:02:53 +0000 tobys-mbp.home (13358)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
+[11/22/14 11:27:55 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_data' in Agent Event Loop:
+[11/22/14 11:27:55 +0000 tobys-mbp.home (13358)] ERROR : SocketError: getaddrinfo: nodename nor servname provided, or not known
+[11/22/14 11:27:55 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_transaction_event_data' in Agent Event Loop:
+[11/22/14 11:27:55 +0000 tobys-mbp.home (13358)] ERROR : SocketError: getaddrinfo: nodename nor servname provided, or not known
+[11/22/14 23:19:21 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_data' in Agent Event Loop:
+[11/22/14 23:19:21 +0000 tobys-mbp.home (13358)] ERROR : SocketError: getaddrinfo: nodename nor servname provided, or not known
+[11/22/14 23:19:21 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_transaction_event_data' in Agent Event Loop:
+[11/22/14 23:19:21 +0000 tobys-mbp.home (13358)] ERROR : SocketError: getaddrinfo: nodename nor servname provided, or not known
+[11/23/14 11:25:02 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_data' in Agent Event Loop:
+[11/23/14 11:25:02 +0000 tobys-mbp.home (13358)] ERROR : SocketError: getaddrinfo: nodename nor servname provided, or not known
+[11/23/14 11:25:02 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_transaction_event_data' in Agent Event Loop:
+[11/23/14 11:25:02 +0000 tobys-mbp.home (13358)] ERROR : SocketError: getaddrinfo: nodename nor servname provided, or not known
+[11/23/14 11:27:33 +0000 tobys-mbp.home (13358)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
+[11/23/14 13:48:12 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_data' in Agent Event Loop:
+[11/23/14 13:48:12 +0000 tobys-mbp.home (13358)] ERROR : Errno::ENETDOWN: Network is down - connect(2) for "collector-101.newrelic.com" port 443
+[11/23/14 13:48:12 +0000 tobys-mbp.home (13358)] ERROR : 1 error(s) running task for event 'report_transaction_event_data' in Agent Event Loop:
+[11/23/14 13:48:12 +0000 tobys-mbp.home (13358)] ERROR : Errno::ENETDOWN: Network is down - connect(2) for "collector-101.newrelic.com" port 443
+[11/23/14 14:09:01 +0000 tobys-mbp.home (13358)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[11/23/14 14:32:13 +0000 tobys-mbp.home (13358)] INFO : Starting Agent shutdown
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Starting the New Relic agent in "development" environment.
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Reading configuration from config/newrelic.yml (/Users/MB/Documents/IT/Steve/Ramp)
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : New Relic Agent Developer Mode enabled.
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Environment: development
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Dispatcher: webrick
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Application: My Application (Development)
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing ActiveRecord instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing Net instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing deferred Rack instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing Rack::Builder middleware instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing Rails 3+ middleware instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing Rails 3 Controller instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Installing Rails 3 Error instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Finished instrumentation
+[11/23/14 14:32:18 +0000 tobys-mbp.home (14987)] INFO : Doing deferred dependency-detection before Rack startup
+[11/23/14 14:32:19 +0000 tobys-mbp.home (14987)] INFO : Reporting to: https://rpm.newrelic.com/accounts/809232/applications/11762672
+[11/23/14 15:23:19 +0000 tobys-mbp.home (14987)] INFO : Starting Agent shutdown

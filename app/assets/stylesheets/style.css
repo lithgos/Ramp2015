@@ -113,6 +113,11 @@ p {
   width: 70%;
 }
 
+.spinner {
+  background-color: red;
+  border: 1px solid red;
+}
+
 .frontpagephoto {
 
     display:block;

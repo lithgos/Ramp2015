@@ -4,7 +4,7 @@
 
   app.controller('contractorDashController', ["$scope", "$http", function($scope, $http) {
 
-    
+    $scope.showSpinner = {}
     // creates a generic map to be updated at later one
     $scope.map = {
         center: {
@@ -88,6 +88,12 @@
     $scope.getPotentialContractors = function (){
       $http.put('/dashboard/put_potential_contractors.json', {job_id: $scope.selectedCompanyJob.id, company_id: $scope.employee.company.id}).success(function(data){
           $scope.potentialcontractors = data
+
+          $scope.potentialcontractors.forEach( function(potentialContractor)  {
+              potentialContractor.canTravel = true
+          })
+          console.log($scope.potentialcontractors)
+
       })
     }
 
@@ -269,11 +275,15 @@
       return false
     }
 
+  
 // toggles status of User accepted for a specific job.  
-    $scope.acceptUser = function(potentialcontractor) {
-
+    $scope.acceptUser = function(potentialcontractor , index) {
+    $scope.showSpinner[index] = true;
+    // $scope.message = 'Loading...'
+    console.log($scope.showSpinner)
       $http.put('dashboard/accept_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
           $scope.getPotentialContractors()
+          $scope.showSpinner[index] = false;
       }) 
     }
 

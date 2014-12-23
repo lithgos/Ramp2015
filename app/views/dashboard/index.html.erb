@@ -199,7 +199,7 @@
                 <td class="center" ng-hide="potentialcontractor.available_now">
                   <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
                 </td>
-                <td class="center" ng-show="userCanTravel(potentialcontractor)">
+                <td class="center" ng-show="potentialcontractor.canTravel">
                   <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
                 </td>
                 <td class="center" ng-hide="userCanTravel(potentialcontractor)">
@@ -229,10 +229,11 @@
                 <td class="center" ng-hide="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
                 </td>
-                <td class="center" ng-show="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
+                <td class="center" ng-show="userAccepted(potentialcontractor)"  ng-click="acceptUser(potentialcontractor)">
                   <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor)">
+
+                <td class="center" ng-hide="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
                 </td>
                 <td class="center" ng-show="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">

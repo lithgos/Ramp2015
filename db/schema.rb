@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141031190216) do
+ActiveRecord::Schema.define(:version => 20141220120049) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20141031190216) do
     t.string   "addressable_type"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "relationship_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "companies", :force => true do |t|

@@ -1,6 +1,6 @@
 RecruitmentProject3App::Application.routes.draw do
   
-  resources :relationships
+  # resources :relationships
 
 
   root to: "dashboard#index"
@@ -16,7 +16,9 @@ RecruitmentProject3App::Application.routes.draw do
   
   devise_for :contractors, :employees, :skip => :sessions, :controllers => { :registrations => 'registrations' }
 
-  
+  resources :relationships do   
+    resources :comments
+  end
 
   resources :jobsearches
 

@@ -3,4 +3,5 @@ class Relationship < ActiveRecord::Base
 
   belongs_to :company
   belongs_to :contractor
+  has_many :comments  
 end

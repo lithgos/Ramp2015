@@ -85,7 +85,7 @@
 
   // returns the list of potential contrators 
 
-    $scope.getPotentialContractors = function (){
+    $scope.getPotentialContractors = function (index){
       $http.put('/dashboard/put_potential_contractors.json', {job_id: $scope.selectedCompanyJob.id, company_id: $scope.employee.company.id}).success(function(data){
 
           data.forEach( function(potentialContractor)  {
@@ -96,18 +96,14 @@
               potentialContractor.offered = $scope.userOffered(potentialContractor)
               potentialContractor.accepted = $scope.userAccepted(potentialContractor)
               potentialContractor.rejected = $scope.userRejected(potentialContractor)
-
-
-          $scope.potentialcontractors = data
-
-
-
+              potentialContractor.companyBlockContractor = $scope.companyblockcontractor(potentialContractor)
+              potentialContractor.contractorFavourite = $scope.contractorfavourite(potentialContractor) 
           })
-          console.log($scope.potentialcontractors)
-
+          $scope.potentialcontractors = data
+          $scope.showSpinner[index] = false
       })
-      return
     }
+
 
 
     $scope.userHasSearch = function(job) {
@@ -294,9 +290,7 @@
     // $scope.message = 'Loading...'
     console.log($scope.showSpinner)
       $http.put('dashboard/accept_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
-          $scope.getPotentialContractors().then(alert("I'm here"));
-          $scope.showSpinner[index] = false
-          ;
+          $scope.getPotentialContractors(index)
       }) 
     }
 

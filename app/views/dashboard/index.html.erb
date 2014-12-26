@@ -199,50 +199,48 @@
                 <td class="center" ng-hide="potentialcontractor.available_now">
                   <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
                 </td>
-                <!-- <td class="center" ng-show="potentialcontractor.canTravel"> -->
-                <td class="center" ng-show="userCanTravel(potentialcontractor)">  
+                <td class="center" ng-show="potentialcontractor.canTravel">
                   <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="userCanTravel(potentialcontractor)">
+                <td class="center" ng-hide="potentialcontractor.canTravel">
                   <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
                 </td>
-                <td class="center" ng-show="userHasQualifications(potentialcontractor)">
+                <td class="center" ng-show="potentialcontractor.hasQualifications">
                   <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="userHasQualifications(potentialcontractor)">
+                <td class="center" ng-hide="potentialcontractor.hasQualifications">
                   <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
-                </td>      
-                <td class="center" ng-show="userShowedinterest(potentialcontractor)">
+                </td>    
+                <td class="center" ng-show="potentialcontractor.showedInterest">
                   <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="userShowedinterest(potentialcontractor)">
+                <td class="center" ng-hide="potentialcontractor.showedInterest">
                   <i class="fa fa-question-circle" style="font-size:165%;color:orange"></i>
                 </td>   
-                <td class="center" ng-show="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
+                <td class="center" ng-show="potentialcontractor.contacted" ng-click="contactUser(potentialcontractor)">
                   <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="userContacted(potentialcontractor)" ng-click="contactUser(potentialcontractor)">
+                <td class="center" ng-hide="potentialcontractor.contacted" ng-click="contactUser(potentialcontractor)">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
-                </td>      
-                <td class="center" ng-show="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
+                </td> 
+                <td class="center" ng-show="potentialcontractor.offered" ng-click="offerUser(potentialcontractor)">
                   <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="userOffered(potentialcontractor)" ng-click="offerUser(potentialcontractor)">
+                <td class="center" ng-hide="potentialcontractor.offered" ng-click="offerUser(potentialcontractor)">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
                 </td>
-                <td class="center" ng-show="userAccepted(potentialcontractor)"  ng-click="acceptUser(potentialcontractor)">
+                <td class="center" ng-show="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
                   <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
                 </td>
-
-                <td class="center" ng-hide="userAccepted(potentialcontractor)" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
+                <td class="center" ng-hide="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
-                </td>
-                <td class="center" ng-show="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
+                </td> 
+                <td class="center" ng-show="potentialcontractor.rejected" ng-click="rejectUser(potentialcontractor)">
                   <i class="fa fa-check-square-o" style="font-size:165%;color:red"></i>
                 </td>
-                <td class="center" ng-hide="userRejected(potentialcontractor)" ng-click="rejectUser(potentialcontractor)">
+                <td class="center" ng-hide="potentialcontractor.rejected" ng-click="rejectUser(potentialcontractor)">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
-                </td>     
+                </td>   
                 <td class="center" ng-click="phoneUser(potentialcontractor)">
                   <i class="fa fa-phone-square" style="font-size:165%"></i>
                 </td>

@@ -199,7 +199,8 @@
                 <td class="center" ng-hide="potentialcontractor.available_now">
                   <i class="fa fa-times-circle" style="font-size:165%;color:red"></i>
                 </td>
-                <td class="center" ng-show="potentialcontractor.canTravel">
+                <!-- <td class="center" ng-show="potentialcontractor.canTravel"> -->
+                <td class="center" ng-show="userCanTravel(potentialcontractor)">  
                   <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
                 </td>
                 <td class="center" ng-hide="userCanTravel(potentialcontractor)">

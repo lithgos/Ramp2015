@@ -89,9 +89,9 @@
       $http.put('/dashboard/put_potential_contractors.json', {job_id: $scope.selectedCompanyJob.id, company_id: $scope.employee.company.id}).success(function(data){
           $scope.potentialcontractors = data
 
-          $scope.potentialcontractors.forEach( function(potentialContractor)  {
-              potentialContractor.canTravel = true
-          })
+          // $scope.potentialcontractors.forEach( function(potentialContractor)  {
+              // potentialContractor.canTravel = true
+          // })
           console.log($scope.potentialcontractors)
 
       })
@@ -282,8 +282,9 @@
     // $scope.message = 'Loading...'
     console.log($scope.showSpinner)
       $http.put('dashboard/accept_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
-          $scope.getPotentialContractors()
-          $scope.showSpinner[index] = false;
+          $scope.getPotentialContractors();
+          $scope.showSpinner[index] = false
+          ;
       }) 
     }
 

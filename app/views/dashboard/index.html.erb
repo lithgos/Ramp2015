@@ -194,7 +194,7 @@
                   <i class="fa fa-ban" style="font-size:100%;color:red"></i>
                 </td>
                 <td>{{ potentialcontractor.name }} <br/> ({{ potentialcontractor.address.city }}) </td>
-                <td class="center three-quarters" ng-show="potentialcontractor.available_now">
+                <td class="center" ng-show="potentialcontractor.available_now">
                   <i class="fa fa-check-circle" style="font-size:165%;color:green"></i>
                 </td>
                 <td class="center" ng-hide="potentialcontractor.available_now">
@@ -230,10 +230,10 @@
                 <td class="center" ng-hide="potentialcontractor.offered" ng-click="offerUser(potentialcontractor)">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
                 </td>
-                <td class="center" ng-show="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{'three-quarters center': showSpinner[$index]}">
+                <td class="center" ng-show="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
                   <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{three-quarters: showSpinner[$index]}">
+                <td class="center" ng-hide="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
                 </td> 
                 <td class="center" ng-show="potentialcontractor.rejected" ng-click="rejectUser(potentialcontractor)">

@@ -98,13 +98,18 @@
               potentialContractor.rejected = $scope.userRejected(potentialContractor)
               potentialContractor.companyBlockContractor = $scope.companyblockcontractor(potentialContractor)
               potentialContractor.contractorFavourite = $scope.contractorfavourite(potentialContractor) 
+              // potentialContractor.comments = $scope.comments(potentialContractor)
           })
           $scope.potentialcontractors = data
           $scope.showSpinner[index] = false
       })
     }
 
-
+    $scope.viewComments = function (potentialContractor) {
+      $scope.specificComments = potentialContractor.comments
+      $scope.specificNameInModal = potentialContractor.name
+      console.log($scope.specificNameInModal)
+    }
 
     $scope.userHasSearch = function(job) {
       var interested = false
@@ -393,7 +398,6 @@
 
 
   app.controller('ModalDemoCtrl', ["$scope", "$modal", "$log", function($scope, $modal, $log) {
-    $scope.items = ['item1', 'item2', 'item3'];
     $scope.open = function (size) {
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
@@ -401,9 +405,13 @@
         size: size,
         resolve: {
           items: function () {
-            return $scope.items;
+            return $scope.specificComments;
+          },
+          contractor: function () {
+            return $scope.specificNameInModal
           }
         }
+
       });
 
       modalInstance.result.then(function (selectedItem) {
@@ -418,14 +426,13 @@
 // It is not the same as the $modal service used above.
 
 
-  app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", function($scope, $modalInstance, items) {
+  app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "items", "contractor", function($scope, $modalInstance, items, contractor) {
+
     $scope.items = items;
-    $scope.selected = {
-      item: $scope.items[0]
-    };
+    $scope.contractor = contractor
 
     $scope.ok = function () {
-      $modalInstance.close($scope.selected.item);
+      $modalInstance.close();
     };
 
     $scope.cancel = function () {

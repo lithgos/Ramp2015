@@ -53,8 +53,8 @@ class DashboardController < ApplicationController
     end
       
     respond_to do |format|
-      format.html { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :relationships, :qualifications]) }
-      format.json { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :relationships, :qualifications]) }
+      format.html { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :relationships, :qualifications, :comments]) }
+      format.json { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :relationships, :qualifications, :comments]) }
     end
   end
 

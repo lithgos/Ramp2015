@@ -6,5 +6,6 @@ class Contractor < User
   has_and_belongs_to_many :qualifications
   # accepts_nested_attributes_for :qualifications
   has_many :relationships
+  has_many :comments, through: :relationships
 
 end

@@ -431,13 +431,31 @@
     $scope.items = items;
     $scope.contractor = contractor
 
+    console.log($scope.items)
+
     $scope.ok = function () {
-      $modalInstance.close();
+      $modalInstance.close($scope.selected.item);
     };
 
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
+
+    // code to do with the form
+
+    $scope.master = {};
+
+    $scope.update = function(user) {
+      $scope.master = angular.copy(user);
+    };
+
+    $scope.reset = function() {
+      $scope.user = angular.copy($scope.master);
+    };
+
+    $scope.reset();
+
+
   }]);
   
   

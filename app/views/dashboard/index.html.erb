@@ -136,33 +136,22 @@
         <div ng-controller="ModalDemoCtrl">
           <script type="text/ng-template" id="myModalContent.html">
             <div class="modal-header">
-              <h3 class="modal-title">comments about {{ contractor }}</h3>
+              <h3 class="modal-title">Comments about {{ contractor }}</h3>
+              <button class="btn btn-primary" ng-click="cancel()">Close</button>
+            </div>
+            <form novalidate class="simple-form modal-header">
+                Leave a comment: <input type="text" ng-model="user.comment" />
+                <input type="submit" ng-click="update(user)" />
+              </form>
             </div>
             <div class="modal-body">
               <ul>
-                <li ng-repeat="item in items">
+                <li ng-repeat="item in items.slice().reverse()">
                   <h4>{{ item.content }}</h4>
                 </li>
               </ul>
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-primary" ng-click="ok()">OK</button>
-              <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-            </div>
-            <div>
-            <form novalidate class="simple-form">
-                Leave a comment: <input type="text" ng-model="user.comment" /><br />
-                <input type="button" ng-click="reset()" value="Reset" />
-                <input type="submit" ng-click="update(user)" value="Save" />
-              </form>
-              <pre>form = {{user | json}}</pre>
-              <pre>master = {{master | json}}</pre>
-            </div>
           </script>
-
-          <button class="btn btn-default" ng-click="open()">Open me!</button>
-          <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
-          <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
 
         </div>
 
@@ -202,10 +191,10 @@
                   <i class="fa fa-ban" style="font-size:100%;color:red"></i>
                 </td>
                 <td ng-hide="potentialcontractor.comments" ng-click="viewComments(potentialcontractor)" class="center">
-                  <i class="fa-pencil-square" style="font-size:100%;color:black"></i>
+                  <i class="fa fa-newspaper-o" style="font-size:100%;color:black"></i>
                 </td>
                 <td ng-show="potentialcontractor.comments" ng-click="viewComments(potentialcontractor)" class="center">
-                  <i class="fa-pencil-square-o" style="font-size:100%;color:red"></i>
+                  <i class="fa fa-newspaper-o" style="font-size:100%;color:green"></i>
                 </td>
                 <td>{{ potentialcontractor.name }} <br/> ({{ potentialcontractor.address.city }}) </td>
                 <td class="center" ng-show="potentialcontractor.available_now">

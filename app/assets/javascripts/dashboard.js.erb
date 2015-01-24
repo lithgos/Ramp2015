@@ -3,7 +3,9 @@
   var app = angular.module('recruitmentApp', ['ngAnimate', 'google-maps', 'ui.bootstrap']);
 
 
-  app.factory('mySharedService', function ($rootScope) {
+  // app.factory('mySharedService', function ($rootScope) {
+
+  app.factory('mySharedService', ['$rootScope', function ($rootScope) {
 
     var sharedService = {}
 
@@ -17,7 +19,7 @@
 
     return sharedService; 
 
-  });
+  }]);
 
 
   app.controller('contractorDashController', ["$scope", "$http", "mySharedService", function($scope, $http, mySharedService) {

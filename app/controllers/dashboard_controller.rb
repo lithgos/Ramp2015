@@ -51,6 +51,9 @@ class DashboardController < ApplicationController
       jobsearch = Jobsearch.where(contractor_id: contractor.id, job_id: params[:job_id]).first_or_create
       relationship = Relationship.where(contractor_id: contractor.id, company_id: params[:company_id]).first_or_create
     end
+    
+    puts "toby1"
+    puts potentialcontractors.to_json
       
     respond_to do |format|
       format.html { render json: potentialcontractors.to_json(include: [:address, :jobsearches, :relationships, :qualifications, :comments]) }

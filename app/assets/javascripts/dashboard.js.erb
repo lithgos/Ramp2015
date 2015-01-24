@@ -123,13 +123,43 @@
               potentialContractor.accepted = $scope.userAccepted(potentialContractor)
               potentialContractor.rejected = $scope.userRejected(potentialContractor)
               potentialContractor.companyBlockContractor = $scope.companyblockcontractor(potentialContractor)
-              potentialContractor.contractorFavourite = $scope.contractorfavourite(potentialContractor) 
-              // potentialContractor.comments = $scope.comments(potentialContractor)
+              potentialContractor.contractorFavourite = $scope.contractorfavourite(potentialContractor)
+              potentialContractor.sortOrderScore = $scope.sortOrderScore(potentialContractor)
+              potentialContractor.timeSinceLogin = $scope.timeSinceLogin(potentialContractor)
+              console.log(potentialContractor.name)
+              console.log(potentialContractor.last_active)        
           })
+      
+          data.sort(
+              firstBy(function (v1, v2) { return v2.sortOrderScore - v1.sortOrderScore; })
+              .thenBy(function (v1, v2) { return v2.last_active - v1.last_active; })
+          );
+
           $scope.potentialcontractors = data
           $scope.showSpinner[index] = false
       })
     }
+
+    $scope.sortOrderScore = function (potentialContractor) {
+      
+      var score = ""
+
+      score += potentialContractor.contacted ? "1" : ""
+      score += potentialContractor.contractorFavourite ? "1" : "0"
+      score += potentialContractor.showedInterest ? "1" : "0"
+
+      return score
+
+    } 
+
+
+    $scope.timeSinceLogin = function (potentialContractor) {
+      
+    }
+
+
+
+
 
     $scope.viewComments = function (potentialContractor) {
       $scope.specificComments = potentialContractor.comments
@@ -276,7 +306,6 @@
 
 // toggles status of User contacted for a specific job.    
     $scope.contactUser = function(potentialcontractor) {
-      $scope.userContacted(potentialcontractor) = true
       $http.put('dashboard/contact_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
           $scope.getPotentialContractors()
       })

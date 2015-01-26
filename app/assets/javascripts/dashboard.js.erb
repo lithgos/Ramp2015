@@ -308,6 +308,7 @@
 
 // toggles status of User contacted for a specific job.    
     $scope.contactUser = function(potentialcontractor) {
+      potentialcontractor.contacted = true
       $http.put('dashboard/contact_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
           $scope.getPotentialContractors()
       })

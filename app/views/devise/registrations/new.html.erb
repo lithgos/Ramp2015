@@ -1,88 +1,134 @@
-<div class="railsform">
 
-<h2>Sign up a new <%= @resource_type%></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-horizontal"}) do |f| %>
   <%= devise_error_messages! %>
 
-  <div>
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <h2>Sign up a new <%= @resource_type%></h2>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label :available_now, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4" %>
+      <%= f.check_box :available_now %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4" %>
+      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password (minimum 8 characers)" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password confirmation" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone, class: "col-sm-4 control-label" %>
+    <div class="col-sm-4" %>
+      <%= f.text_field :phone, class: "form-control", placeholder: "Phone number" %>
+    </div>
   </div>
 
   <% if @resource_type == Employee %>
     <!-- Show Fields for Employee -->
   <% elsif @resource_type == Contractor %>
-    <div>
-      <%= f.label :dob %><br />
-      <%= f.date_select :dob, :start_year => 1999, :end_year => 1920 %>
-    </div> 
-    <div>
-      <%= f.label :distance_travel %><br />
-      <%= f.select(:distance_travel, [["Unlimited", 50000], ["1000 miles", 1000], ["500 miles", 500], ["200 miles", 200], ["100 miles", 100], ["50 miles", 50], ["20 miles", 20]]) %>
-    </div> 
-    <div class="field">
-      <%= f.label :abroad %><br />
-      <%= f.check_box :abroad %>
+
+    <div class="form-group">
+      <%= f.label :dob, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4" %>
+        <%= f.date_select :dob, :start_year => 1999, :end_year => 1920, class: "form-control", placeholder: "Date of Birth" %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :available_now %><br />
-      <%= f.check_box :available_now %>
+
+    <div class="form-group">
+      <%= f.label :distance_travel, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4" %>
+        <%= f.select(:distance_travel, [["Unlimited", 50000], ["1000 miles", 1000], ["500 miles", 500], ["200 miles", 200], ["100 miles", 100], ["50 miles", 50], ["20 miles", 20]], class: "form-control") %>
+      </div>
+    </div> 
+
+    <div class="form-group">
+      <%= f.label :abroad, class: "col-sm-4 control-label" %>
+      <div class="col-sm-4" %>
+        <%= f.check_box :abroad %>
+      </div>
     </div>
+
     <%= f.fields_for :address, resource.address do |ff| %>
       <%= ff.hidden_field :addressable_id %>
       <%= ff.hidden_field :addressable_type %>
-      <div class="field">
-        <%= ff.label :line1 %><br />
-        <%= ff.text_field :line1 %>
+
+      <div class="form-group">
+        <%= ff.label :line1, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4" %>
+          <%= ff.text_field :line1, class: "form-control", placeholder: "Line1" %>
+        </div>
       </div>
-      <div class="field">
-        <%= ff.label :line2 %><br />
-        <%= ff.text_field :line2 %>
+      
+      <div class="form-group">
+        <%= ff.label :line2, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4" %>
+          <%= ff.text_field :line2, class: "form-control", placeholder: "Line2" %>
+        </div>
       </div>
-      <div class="field">
-        <%= ff.label :city %><br />
-        <%= ff.text_field :city %>
+
+      <div class="form-group">
+        <%= ff.label :city, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4" %>
+          <%= ff.text_field :city, class: "form-control", placeholder: "City" %>
+        </div>
       </div>
-      <div class="field">
-        <%= ff.label :postcode %><br />
-        <%= ff.text_field :postcode %>
+
+      <div class="form-group">
+        <%= ff.label :postcode, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4" %>
+          <%= ff.text_field :postcode, class: "form-control", placeholder: "Postcode" %>
+        </div>
       </div>
-      <div class="field">
-        <%= ff.label :country %><br />
-        <%= ff.text_field :country %>
+
+      <div class="form-group">
+        <%= ff.label :country, class: "col-sm-4 control-label" %>
+        <div class="col-sm-4" %>
+          <%= ff.text_field :country, class: "form-control", placeholder: "Country" %>
+        </div>
       </div>
+
     <% end %>
+
     <div class="field"> 
       <% Qualification.all.each do |qualification| %>  
         <%= check_box_tag "qualifications[]", qualification.id, resource.qualifications.include?(qualification) %>
         <%= label qualification.id, qualification.name%>
       <% end %>
     </div>
+
   <% end %>
+  
   <div><%= f.submit "Sign up" %></div>
+
 <% end %>
 
 <%= render "devise/shared/links" %>
-
-</div>

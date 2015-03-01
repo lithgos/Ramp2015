@@ -22,7 +22,9 @@
   }]);
 
 
-  app.controller('contractorDashController', ["$scope", "$http", "mySharedService", function($scope, $http, mySharedService) {
+  app.controller('contractorDashController', ["$scope", "$http", "mySharedService", "$location", function($scope, $http, mySharedService, $location) {
+   
+    console.log( $location)
 
     $scope.showSpinner = {}
     // creates a generic map to be updated at later one
@@ -115,7 +117,7 @@
 
     $scope.getPotentialContractors = function (index){
       $http.put('/dashboard/put_potential_contractors.json', {job_id: $scope.selectedCompanyJob.id, company_id: $scope.employee.company.id}).success(function(data){
-
+     
           data.forEach( function(potentialContractor)  {
               potentialContractor.canTravel = $scope.userCanTravel(potentialContractor)
               potentialContractor.hasQualifications = $scope.userHasQualifications(potentialContractor)
@@ -128,18 +130,25 @@
               potentialContractor.contractorFavourite = $scope.contractorfavourite(potentialContractor)
               potentialContractor.sortOrderScore = $scope.sortOrderScore(potentialContractor)
               potentialContractor.timeSinceLogin = $scope.timeSinceLogin(potentialContractor)
-              console.log(potentialContractor.name)
-              console.log(potentialContractor.last_active)        
+              
           })
-      
-          data.sort(
+         
+          // data.sort(
+          //     firstBy(function (v1, v2) { return v2.sortOrderScore - v1.sortOrderScore; })
+          //     .thenBy(function (v1, v2) { return v2.last_active - v1.last_active; })
+          // );
+
+          $scope.potentialcontractors = data
+          $scope.sortContractors();
+          $scope.showSpinner[index] = false
+      })
+    }
+
+    $scope.sortContractors = function ( ) {
+      $scope.potentialcontractors.sort(
               firstBy(function (v1, v2) { return v2.sortOrderScore - v1.sortOrderScore; })
               .thenBy(function (v1, v2) { return v2.last_active - v1.last_active; })
           );
-
-          $scope.potentialcontractors = data
-          $scope.showSpinner[index] = false
-      })
     }
 
     $scope.sortOrderScore = function (potentialContractor) {
@@ -307,10 +316,20 @@
     }
 
 // toggles status of User contacted for a specific job.    
-    $scope.contactUser = function(potentialcontractor) {
+    $scope.contactUser = function(potentialcontractor, index) {
       potentialcontractor.contacted = true
       $http.put('dashboard/contact_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
-          $scope.getPotentialContractors()
+          console.log('data from server', data)
+          $scope.potentialcontractors[index].jobsearches.forEach(function(jobsearch, index1){
+            if (jobsearch.id == data.id){
+              $scope.potentialcontractors[index].jobsearches[index1] = data
+
+            }
+          })
+          $scope.potentialcontractors[index].contacted = $scope.userContacted ($scope.potentialcontractors[index]) 
+          $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
+          $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
+          // $scope.getPotentialContractors()
       })
       
     }

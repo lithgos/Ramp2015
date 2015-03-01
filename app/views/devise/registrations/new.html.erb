@@ -118,16 +118,28 @@
 
     <% end %>
 
-    <div class="field"> 
-      <% Qualification.all.each do |qualification| %>  
-        <%= check_box_tag "qualifications[]", qualification.id, resource.qualifications.include?(qualification) %>
-        <%= label qualification.id, qualification.name%>
-      <% end %>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <h2 class="text-center">Please select your current Qualifications</h2>
+      </div>
     </div>
 
+    <% Qualification.all.each do |qualification| %>  
+      <div class="form-group">
+        <%= label qualification.id, qualification.name, class: "col-sm-offset-2 col-sm-4 control-label" %>
+        <div class="col-sm-4" %>
+          <%= check_box_tag "qualifications[]", qualification.id, resource.qualifications.include?(qualification) %>
+        </div>
+      </div>
+    <% end %>
+
   <% end %>
-  
-  <div><%= f.submit "Sign up" %></div>
+
+  <div class="form-group">
+    <div class="col-sm-12 text-center">
+      <%= f.submit "Sign up", class: "btn btn-default btn btn-primary" %>
+    </div>
+  </div>
 
 <% end %>
 

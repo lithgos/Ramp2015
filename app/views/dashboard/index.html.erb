@@ -178,9 +178,10 @@
               </tr> 
 
               <tr ng-repeat="potentialcontractor in potentialcontractors">
-               
+                <div>test</div>
                 <td ng-hide="potentialcontractor.contractorFavourite" ng-click="togglecontractorfavourite(potentialcontractor)" class="center">
                   <i class="fa fa-star-o" style="font-size:100%;color:black"></i>
+
                 </td>
                 <td ng-show="potentialcontractor.contractorFavourite" ng-click="togglecontractorfavourite(potentialcontractor)" class="center">
                   <i class="fa fa-star" style="font-size:100%;color:gold"></i>
@@ -223,12 +224,12 @@
                 <td class="center" ng-hide="potentialcontractor.showedInterest">
                   <i class="fa fa-question-circle" style="font-size:165%;color:orange"></i>
                 </td>   
-                <td class="center" ng-show="potentialcontractor.contacted" ng-click="contactUser(potentialcontractor)">
-                  <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+                <td class="center" ng-click="contactUser(potentialcontractor, $index)">
+                  <i ng-class="potentialcontractor.contacted ? 'fa fa-check-square-o' : 'fa fa-square-o' " style="font-size:165%;color:green"></i>
                 </td>
-                <td class="center" ng-hide="potentialcontractor.contacted" ng-click="contactUser(potentialcontractor)">
+                <!-- <td class="center" ng-hide="potentialcontractor.contacted" ng-click="contactUser(potentialcontractor, $index)">
                   <i class="fa fa-square-o" style="font-size:165%"></i>
-                </td> 
+                </td>  -->
                 <td class="center" ng-show="potentialcontractor.offered" ng-click="offerUser(potentialcontractor)">
                   <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
                 </td>

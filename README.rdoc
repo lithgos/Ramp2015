@@ -259,3 +259,25 @@ vendor
   External libraries that the application depends on. Also includes the plugins
   subdirectory. If the app has frozen rails, those gems also go here, under
   vendor/rails/. This directory is in the load path.
+
+
+  <td class="center" ng-show="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
+    <i class="fa fa-check-square-o" style="font-size:165%;color:green"></i>
+  </td>
+  <td class="center" ng-hide="potentialcontractor.accepted" ng-click="acceptUser(potentialcontractor , $index)" ng-class="{spinner: showSpinner[$index]}">
+    <i class="fa fa-square-o" style="font-size:165%"></i>
+  </td> 
+
+
+
+  // toggles status of User accepted for a specific job.  
+      $scope.acceptUser = function(potentialcontractor , index) {
+      $scope.showSpinner[index] = true;
+      // $scope.message = 'Loading...'
+      console.log($scope.showSpinner)
+        $http.put('dashboard/accept_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+            $scope.getPotentialContractors(index)
+        }) 
+      }
+
+      

@@ -132,11 +132,6 @@
               potentialContractor.timeSinceLogin = $scope.timeSinceLogin(potentialContractor)
               
           })
-         
-          // data.sort(
-          //     firstBy(function (v1, v2) { return v2.sortOrderScore - v1.sortOrderScore; })
-          //     .thenBy(function (v1, v2) { return v2.last_active - v1.last_active; })
-          // );
 
           $scope.potentialcontractors = data
           $scope.sortContractors();
@@ -315,25 +310,6 @@
       return false
     }
 
-// toggles status of User contacted for a specific job.    
-    $scope.contactUser = function(potentialcontractor, index) {
-      potentialcontractor.contacted = true
-      $http.put('dashboard/contact_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
-          console.log('data from server', data)
-          $scope.potentialcontractors[index].jobsearches.forEach(function(jobsearch, index1){
-            if (jobsearch.id == data.id){
-              $scope.potentialcontractors[index].jobsearches[index1] = data
-
-            }
-          })
-          $scope.potentialcontractors[index].contacted = $scope.userContacted ($scope.potentialcontractors[index]) 
-          $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
-          $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
-          // $scope.getPotentialContractors()
-      })
-      
-    }
-
 // for a particular job, checks whether a user has been made an offer  
     $scope.userOffered = function(potentialcontractor) {
       var offered = false
@@ -347,11 +323,47 @@
       return false
     }
 
-// toggles status of User offered for a specific job.    
-    $scope.offerUser = function(potentialcontractor) {
-      $http.put('dashboard/offer_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
-          $scope.getPotentialContractors()
-      })      
+
+    $scope.togglecontractorfavourite = function(potentialcontractor, index) {
+      $http.put('dashboard/put_toggle_contractor_favourite.json', { contractor_id: potentialcontractor.id, company_id: $scope.employee.company.id}).success(function (data){
+        $scope.potentialcontractors[index].relationships.forEach(function(relationship, index1){
+          if (relationship.id == data.id){
+            $scope.potentialcontractors[index].relationships[index1] = data
+          }
+        })
+        $scope.potentialcontractors[index].contractorFavourite = $scope.contractorfavourite ($scope.potentialcontractors[index]) 
+        $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
+        $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
+      })
+    }
+
+    $scope.togglecompanyblockcontractor = function(potentialcontractor, index) {
+      $http.put('dashboard/put_toggle_company_block_contractor.json', { contractor_id: potentialcontractor.id, company_id: $scope.employee.company.id}).success(function (data){
+        $scope.potentialcontractors[index].relationships.forEach(function(relationship, index1){
+          if (relationship.id == data.id){
+            $scope.potentialcontractors[index].relationships[index1] = data
+          }
+        })
+        $scope.potentialcontractors[index].companyBlockContractor = $scope.companyblockcontractor ($scope.potentialcontractors[index]) 
+        $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
+        $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
+      })
+    }
+
+// toggles status of User contacted for a specific job.    
+    $scope.contactUser = function(potentialcontractor, index) {
+      // potentialcontractor.contacted = true
+      $http.put('dashboard/contact_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+          $scope.potentialcontractors[index].jobsearches.forEach(function(jobsearch, index1){
+            if (jobsearch.id == data.id){
+              $scope.potentialcontractors[index].jobsearches[index1] = data
+            }
+          })
+          $scope.potentialcontractors[index].contacted = $scope.userContacted ($scope.potentialcontractors[index]) 
+          $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
+          $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
+          // $scope.getPotentialContractors()
+      })
     }
 
 // for a particular job, checks whether a user has accepted an offer
@@ -367,14 +379,20 @@
     }
 
   
-// toggles status of User accepted for a specific job.  
-    $scope.acceptUser = function(potentialcontractor , index) {
-    $scope.showSpinner[index] = true;
-    // $scope.message = 'Loading...'
-    console.log($scope.showSpinner)
-      $http.put('dashboard/accept_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
-          $scope.getPotentialContractors(index)
-      }) 
+
+// toggles status of User offered for a specific job.    
+    $scope.offerUser = function(potentialcontractor, index) {
+      // potentialcontractor.offered = true;
+      $http.put('dashboard/offer_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+        $scope.potentialcontractors[index].jobsearches.forEach(function(jobsearch, index1){
+          if (jobsearch.id == data.id){
+            $scope.potentialcontractors[index].jobsearches[index1] = data
+          }
+        })
+        $scope.potentialcontractors[index].offered = $scope.userOffered($scope.potentialcontractors[index]) 
+        $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
+        $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
+      })      
     }
 
 // for a particular job, checks whether a user has rejected an offer
@@ -389,12 +407,37 @@
       return false
     }
 
-// toggles status of User accepted for a specific job.
-    $scope.rejectUser = function(potentialcontractor) {
 
+// toggles status of User accepted for a specific job.  
+    $scope.acceptUser = function(potentialcontractor, index) {
+      // potentialcontractor.accepted = true;
+      $http.put('dashboard/accept_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
+        $scope.potentialcontractors[index].jobsearches.forEach(function(jobsearch, index1){
+          if (jobsearch.id == data.id){
+            $scope.potentialcontractors[index].jobsearches[index1] = data
+          }
+        })
+        $scope.potentialcontractors[index].accepted = $scope.userAccepted($scope.potentialcontractors[index]) 
+        $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
+        $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
+      })      
+    }
+
+
+
+// toggles status of User rejected for a specific job.
+    $scope.rejectUser = function(potentialcontractor, index) {
+      // potentialcontractor.rejected = true;
       $http.put('dashboard/reject_user.json', { contractor_id: potentialcontractor.id, job_id: $scope.selectedCompanyJob.id }).success(function (data){
-          $scope.getPotentialContractors()
-      }) 
+        $scope.potentialcontractors[index].jobsearches.forEach(function(jobsearch, index1){
+          if (jobsearch.id == data.id){
+            $scope.potentialcontractors[index].jobsearches[index1] = data
+          }
+        })
+        $scope.potentialcontractors[index].rejected = $scope.userRejected($scope.potentialcontractors[index]) 
+        $scope.potentialcontractors[index].sortOrderScore = $scope.sortOrderScore($scope.potentialcontractors[index])
+        $scope.potentialcontractors[index].timeSinceLogin = $scope.timeSinceLogin($scope.potentialcontractors[index])
+      })      
     }
 
 //  Popup message with the contractors phone number.  
@@ -418,13 +461,6 @@
       return favouritecontractor
     }
 
-    $scope.togglecontractorfavourite = function(potentialcontractor) {
-
-      $http.put('dashboard/put_toggle_contractor_favourite.json', { contractor_id: potentialcontractor.id, company_id: $scope.employee.company.id}).success(function (data){
-          $scope.getPotentialContractors()
-      }) 
-    }
-
     $scope.companyblockcontractor = function(potentialcontractor) {
       var companyblockcontractor = false
       for(var i = 0 ; i < potentialcontractor.relationships.length; i++) {
@@ -439,12 +475,7 @@
       return companyblockcontractor
     }
 
-    $scope.togglecompanyblockcontractor = function(potentialcontractor) {
-      
-      $http.put('dashboard/put_toggle_company_block_contractor.json', { contractor_id: potentialcontractor.id, company_id: $scope.employee.company.id}).success(function (data){
-          $scope.getPotentialContractors()
-      }) 
-    }
+
   }])
 
 

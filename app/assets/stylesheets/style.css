@@ -13,6 +13,10 @@ html, body {
   background-size: 100%;
 }
 
+.green {
+  color:green
+}
+
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 #wrapper {
@@ -264,3 +268,22 @@ p {
   margin-top: 12px;
 }
 
+.bigfont {
+  font-size:165%;
+}
+
+.green {
+  color: green;
+}
+
+.gold {
+  color: gold;
+}
+
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}

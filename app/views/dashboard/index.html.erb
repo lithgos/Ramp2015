@@ -160,91 +160,95 @@
 
         <div class="row">      
           <div class="col-md-12 col-sm-12 col-xs-12" id="body-div1"><img src="">
-            <table ng-show="selectedCompanyJob" class="table table-striped">
-            <tr>
-                <td class="center"><i class="fa fa-star-o" style="font-size:160%;color:black"></i></td>
-                <td class="center"><i class="fa fa-ban" style="font-size:160%;color:black"></i></td>
-                <td class="center"><i class="fa-pencil-square-o" style="font-size:160;color:black"></i></td>
-                <td class="center"></td>
-                <td class="center">Sort info</td>
-                <td class="center">Available</td>
-                <td class="center">Distance</td>
-                <td class="center">Qualification</td>
-                <td class="center">Interest</td>
-                <td class="center">Contacted</td>
-                <td class="center">Offered</td>
-                <td class="center">Accepted</td>
-                <td class="center">Rejected</td>
-                <td class="center">Phone</td>
-                <td class="center">Email</td>
+            
+            <div class='newtable'>
+              <div class='newtable-row'>
+                <div class="newtable-cell newtable-icon"><i class="fa fa-star-o"></i></div>
+                <div class='newtable-cell newtable-icon'><i class="fa fa-ban"></i></div>
+                <div class='newtable-cell newtable-icon'><i class="fa-pencil-square-o"></i></div>
+                <div class='newtable-cell newtable-name'></div>
+                <div class='newtable-cell visible-lg'>Sort info</div>
+                <div class='newtable-cell'>Available</div>
+                <div class='visible-lg'>
+                  <div class='newtable-cell'>Distance</div>
+                  <div class='newtable-cell'>Qualification</div>
+                  <div class='newtable-cell'>Interest</div>
+                </div>
+                <div class='newtable-cell'>Contacted</div>
+                <div class='newtable-cell'>Offered</div>
+                <div class='newtable-cell'>Accepted</div>
+                <div class='newtable-cell'>Rejected</div>
+                <div class='newtable-cell'>Phone</div>
+                <div class='newtable-cell'>Email</div>
+              </div> 
 
-              </tr> 
-
-              <tr ng-repeat="potentialcontractor in potentialcontractors">
+              <div class='newtable-row' ng-repeat="potentialcontractor in potentialcontractors">
                
-                <td class="center" ng-click="togglecontractorfavourite(potentialcontractor, $index)">
+                <div class='newtable-cell newtable-icon' ng-click="togglecontractorfavourite(potentialcontractor, $index)">
                   <i ng-class="potentialcontractor.contractorFavourite ? 'fa fa-star gold' : 'fa fa-star-o'"></i>
-                </td>
+                </div>
 
-                <td class="center" ng-click="togglecompanyblockcontractor(potentialcontractor, $index)">
+                <div class='newtable-cell newtable-icon' ng-click="togglecompanyblockcontractor(potentialcontractor, $index)">
                   <i ng-class="potentialcontractor.companyBlockContractor ? 'fa fa-ban red' : 'fa fa-ban'"></i>
-                </td>
+                </div>
 
-                <td ng-hide="potentialcontractor.comments" ng-click="viewComments(potentialcontractor)" class="center">
+                <div class='newtable-cell newtable-icon' ng-hide="potentialcontractor.comments" ng-click="viewComments(potentialcontractor)" class="center">
                   <i class="fa fa-newspaper-o" style="font-size:100%;color:black"></i>
-                </td>
+                </div>
 
-                <td ng-show="potentialcontractor.comments" ng-click="viewComments(potentialcontractor)" class="center">
+                <div class='newtable-cell newtable-icon' ng-show="potentialcontractor.comments" ng-click="viewComments(potentialcontractor)" class="center">
                   <i class="fa fa-newspaper-o" style="font-size:100%;color:green"></i>
-                </td>
+                </div>
 
-                <td>{{ potentialcontractor.name }} <br/> ({{ potentialcontractor.address.city }})</td>
-                <td class="center">{{potentialcontractor.sortOrderScore}}<br/>{{potentialcontractor.last_active}}</td>
+                <div class='newtable-cell newtable-name'>{{ potentialcontractor.name }} <br/> ({{ potentialcontractor.address.city }})</div>
+
+                <div class='newtable-cell visible-lg'>{{potentialcontractor.sortOrderScore}}<br/>{{potentialcontractor.last_active}}</div>
 
 
-                <td class="center">
+                <div class='newtable-cell'>
                   <i ng-class="potentialcontractor.available_now ? 'fa fa-check-circle green' : 'fa fa-times-circle red'" style="font-size:165%"></i>
-                </td>
+                </div>
 
-                <td class="center">
-                  <i ng-class="potentialcontractor.canTravel ? 'fa fa-check-circle green' : 'fa fa-times-circle red'" style="font-size:165%"></i>
-                </td>
+                <div class='visible-lg'>
+                  <div class='newtable-cell'>
+                    <i ng-class="potentialcontractor.canTravel ? 'fa fa-check-circle green' : 'fa fa-times-circle red'" style="font-size:165%"></i>
+                  </div>
+                  <div class='newtable-cell'>
+                    <i ng-class="potentialcontractor.hasQualifications ? 'fa fa-check-circle green' : 'fa fa-times-circle red'" style="font-size:165%"></i>
+                  </div>
+                  <div class='newtable-cell'>
+                    <i ng-class="potentialcontractor.showedInterest ? 'fa fa-check-circle green' : 'fa fa-question-circle orange'" style="font-size:165%"></i>
+                  </div>
+                </div>
 
-                <td class="center">
-                  <i ng-class="potentialcontractor.hasQualifications ? 'fa fa-check-circle green' : 'fa fa-times-circle red'" style="font-size:165%"></i>
-                </td>
- 
-                <td class="center">
-                  <i ng-class="potentialcontractor.showedInterest ? 'fa fa-check-circle green' : 'fa fa-question-circle orange'" style="font-size:165%"></i>
-                </td>
 
-                <td class="center" ng-click="contactUser(potentialcontractor, $index)">
+                <div class='newtable-cell' ng-click="contactUser(potentialcontractor, $index)">
                   <i ng-class="potentialcontractor.contacted ? 'fa fa-check-square-o green' : 'fa fa-square-o' " style="font-size:165%"></i>
-                </td>
+                </div>
 
 
-                <td class="center"  ng-click="offerUser(potentialcontractor, $index)">
+                <div class='newtable-cell'  ng-click="offerUser(potentialcontractor, $index)">
                   <i ng-class="potentialcontractor.offered ? 'fa fa-check-square-o green' : 'fa fa-square-o'" style="font-size:165%"></i>
-                </td>
+                </div>
 
-                <td class="center" ng-click="acceptUser(potentialcontractor, $index)">
+                <div class='newtable-cell' ng-click="acceptUser(potentialcontractor, $index)">
                   <i ng-class="potentialcontractor.accepted ? 'fa fa-check-square-o green' : 'fa fa-square-o'" style="font-size:165%"></i>
-                </td>
+                </div>
 
-                <td class="center" ng-click="rejectUser(potentialcontractor, $index)">
+                <div class='newtable-cell' ng-click="rejectUser(potentialcontractor, $index)">
                   <i ng-class="potentialcontractor.rejected ? 'fa fa-check-square-o green' : 'fa fa-square-o'" style="font-size:165%"></i>
-                </td>
+                </div>
   
-                <td class="center" ng-click="phoneUser(potentialcontractor)">
+                <div class='newtable-cell' ng-click="phoneUser(potentialcontractor)">
                   <i class="fa fa-phone-square" style="font-size:165%"></i>
-                </td>
+                </div>
 
-                <td class="center" ng-click="emailUser(potentialcontractor)">
+                <div class='newtable-cell' ng-click="emailUser(potentialcontractor)">
                   <a href="mailto:{{potentialcontractor.email}}" target="_top"><i class="fa fa-envelope" style="font-size:165%"></i></a>
-                </td>
+                </div>
 
-              </tr>
-            </table>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>

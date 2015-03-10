@@ -287,3 +287,9 @@ p {
 .orange {
   color: orange;
 }
+
+@media (min-width: 0px) {
+  @media (max-width: 768px) {
+    .container {
+      max-width: 500px;
+    }
